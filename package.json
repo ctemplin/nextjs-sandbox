@@ -19,7 +19,8 @@
     "@material-ui/utils": "4.10.2",
     "next": "latest",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "sha1": "^1.1.1"
   },
   "license": "MIT",
   "keywords": [
