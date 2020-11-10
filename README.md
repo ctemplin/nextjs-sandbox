@@ -1,0 +1,1 @@
+# Personal Next.js sandbox
