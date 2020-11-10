@@ -4,7 +4,7 @@ import Link from "next/link";
 const IndexPage = () => {
   return (
     <div>
-      Hello World. <link href="/about" rel="/favicon.ico"></link>
+      Hello World, Dev. <link href="/about" rel="/favicon.ico"></link>
     </div>
   );
 };
