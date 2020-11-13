@@ -21,33 +21,39 @@ import Copyright from "../src/Copyright";
 import EmojiPeopleIcon from "@material-ui/icons/AccessibilityNew";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
+const funcUrl = "http://localhost:37589"
+
 export async function getStaticProps() {
-  const dataCols = [
-    { field: "id", headerName: "ID" },
-    { field: "url", headerName: "URL" }
-  ];
-  /*   const res = await fetch("https://api.podcastindex.org/api/1.0/recent/feeds?max=20&cat=102,health&lang=de,ja&pretty",
-  {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'User-Agent': 'api',
-        'X-Auth-Date': Date.now(),
-        'X-Auth-Key': '',
-        'Authorization': ''
-      },
-      body: '' //JSON.stringify(user)
-    });
-    
-  );
-  const json = await res.json(); */
+    const dataCols = [
+        { field: "id", headerName: "ID" },
+        { field: "url", headerName: "URL" }
+    ];
+
+    const tokenRes = await fetch(funcUrl + "/.netlify/functions/podcastindex-auth-token")
+    const tokenJson = await tokenRes.json();
+
+    //tokenJson["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+
+    var json
+    try {
+        const res = await fetch(
+            "https://api.podcastindex.org/api/1.0/recent/feeds?max=20&lang=en",
+            {
+                method: 'GET',
+                headers: tokenJson
+            }
+        );
+        json = await res.json()
+    } catch (error) {
+      console.log(error)
+    }
 
   return {
     props: {
       dataCols: dataCols,
-      dataRows: []
+      dataRows: json.feeds
     }
-  };
+  }
 }
 
 export default function About({ dataRows, dataCols }) {
@@ -81,7 +87,8 @@ export default function About({ dataRows, dataCols }) {
           <DataGrid
             rows={dataRows}
             columns={dataCols}
-            pageSize={5}
+            pageSize={10}
+            autoHeight="true"
             checkboxSelection
           />
         </Grid>
