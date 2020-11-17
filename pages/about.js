@@ -21,7 +21,7 @@ import Copyright from "../src/Copyright";
 import EmojiPeopleIcon from "@material-ui/icons/AccessibilityNew";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
-const funcUrl = "http://localhost:37589"
+const functionsUrl = require('../build_vars.js').functionsUrl
 
 export async function getStaticProps() {
     const dataCols = [
@@ -29,7 +29,7 @@ export async function getStaticProps() {
         { field: "url", headerName: "URL" }
     ];
 
-    const tokenRes = await fetch(funcUrl + "/.netlify/functions/podcastindex-auth-token")
+    const tokenRes = await fetch(functionsUrl + "/.netlify/functions/podcastindex-auth-token")
     const tokenJson = await tokenRes.json();
 
     //tokenJson["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
