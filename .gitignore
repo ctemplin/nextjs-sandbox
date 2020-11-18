@@ -38,3 +38,5 @@ yarn-error.log*
 
 # BAK files
 *-bak
+
+build_vars.js
