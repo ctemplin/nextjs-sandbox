@@ -17,10 +17,12 @@
     "@material-ui/system": "4.9.14",
     "@material-ui/types": "5.1.0",
     "@material-ui/utils": "4.10.2",
+    "dayjs": "^1.9.6",
     "next": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "swr": "^0.3.9"
   },
   "license": "MIT",
   "keywords": [
