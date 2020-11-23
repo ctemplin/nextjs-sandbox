@@ -24,7 +24,6 @@ import dayjs  from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 dayjs.extend(relativeTime)
 
-const functionsUrl = require('../build_vars.js').functionsUrl
 var pdiHeaders
 
 
