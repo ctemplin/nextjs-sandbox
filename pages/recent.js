@@ -24,14 +24,9 @@ import dayjs  from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 dayjs.extend(relativeTime)
 
-var pdiHeaders
-
-
 export async function getStaticProps() {
-
     return {
-        props: {
-        }
+        props: {}
     }
 }
 
@@ -49,7 +44,7 @@ function renderUpdateCell(params) {
 
 export default function About({ }) {
     const { data, error } = useSWR(
-        "/api/podcastindex/recent/",
+        "/.netlify/functions/podcastindex-recent",
         (...args) => fetch(...args).then(res => res.json(),
         {dedupingInterval: 15000, revalidateOnFocus: false}
         )
@@ -73,10 +68,7 @@ export default function About({ }) {
     }
     ];
 
-
-    return (
-
-    
+    return ( 
     <Container maxWidth="lg">
         <Grid container spacing="3">
             <Grid item xs={12}>
@@ -104,7 +96,7 @@ export default function About({ }) {
             </Grid>
             <Grid item xs={9}>
                 <DataGrid
-                    rows={data.feeds}
+                    rows={data}
                     columns={dataCols}
                     pageSize={10}
                     autoHeight="true"
@@ -112,17 +104,6 @@ export default function About({ }) {
                 />
             </Grid>
         </Grid>
-
-        {/* <Box my={4}>
-            <Typography variant="h4" component="h1" gutterBottom>
-            Next.js v5-alpha example
-            </Typography>
-            <Button variant="contained" component={Link} naked href="/">
-            Go to the main page
-            </Button>
-            <ProTip />
-            <Copyright />
-            </Box> */}
     </Container>
     );
 }
