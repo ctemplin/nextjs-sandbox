@@ -42,6 +42,10 @@ function renderUpdateCell(params) {
     return <span>{formatDay(new Date(params.value * 1000).toLocaleString())}</span>
 }
 
+function renderCategorieCell(params) {
+    return Object.values(params.value).reduce((r, v) => r = r + ', ' + v)
+}
+
 export default function About({ }) {
     const { data, error } = useSWR(
         "/.netlify/functions/podcastindex-recent",
@@ -65,6 +69,10 @@ export default function About({ }) {
       headerName: "Last updated",
       width: 200,
       renderCell: renderUpdateCell
+    },
+    { field: "categories",
+      headerName: "Catefories",
+      renderCell: renderCategorieCell
     }
     ];
 
