@@ -81,7 +81,7 @@ export default function About({ }) {
         <Grid container spacing="3">
             <Grid item xs={12}>
                 <Paper elevation={3}>
-                    <Typography variant="h1">Header 1</Typography>
+                    <Typography variant="h4">Podcast Index Explorer</Typography>
                 </Paper>
             </Grid>
             <Grid item xs={3}>
@@ -103,6 +103,7 @@ export default function About({ }) {
                 </Paper>
             </Grid>
             <Grid item xs={9}>
+                <Typography variant="h5">Recently Updated Feeds</Typography>
                 <DataGrid
                     rows={data}
                     columns={dataCols}
