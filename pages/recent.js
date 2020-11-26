@@ -58,7 +58,6 @@ export default function About({ }) {
     console.log(data)
 
     const dataCols = [
-    { field: "id", headerName: "ID" },
     { field: "title",
       headerName: "Title",
       width: 300,
