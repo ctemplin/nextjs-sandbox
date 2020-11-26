@@ -9,8 +9,8 @@ import material, {
     Icon,
     SvgIcon
 } from "@material-ui/core";
-import EmojiPeopleIcon from "@material-ui/icons/AccessibilityNew";
-import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import UpdatedIcon from "@material-ui/icons/Update";
+import NewIcon from "@material-ui/icons/ChildCare";
 
 
 export default function Navigation() {
@@ -18,15 +18,15 @@ export default function Navigation() {
             <List>
             <ListItem button>
             <ListItemIcon>
-            <EmojiPeopleIcon />
+            <UpdatedIcon />
             </ListItemIcon>
-            <ListItemText primary="Ways to Be" />
+            <ListItemText primary="Updated Feeds" />
             </ListItem>
             <ListItem button>
             <ListItemIcon>
-            <FingerprintIcon />
+            <NewIcon />
             </ListItemIcon>
-            <ListItemText primary="Items of Interest" />
+            <ListItemText primary="New Feeds" />
             </ListItem>
             </List>
     );
