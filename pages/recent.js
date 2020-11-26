@@ -78,7 +78,7 @@ export default function About({ }) {
 
     return ( 
     <Container maxWidth="lg">
-        <Grid container spacing="3">
+        <Grid container spacing="3" direction="row-reverse">
             <Grid item xs={12}>
                 <Paper elevation={3}>
                     <Typography variant="h4">Podcast Index Explorer</Typography>
