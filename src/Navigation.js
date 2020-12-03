@@ -16,24 +16,24 @@ import NewIcon from "@material-ui/icons/ChildCare";
 
 export default function Navigation() {
     return (
-            <List>
+        <List>
             <Link passHref href="/recent">
-            <ListItem button>
-            <ListItemIcon>
-            <UpdatedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Updated Feeds" />
-            </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <UpdatedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Updated Feeds" />
+                </ListItem>
             </Link>
             <Link psssHref href="/new">
-            <ListItem button>
-            <ListItemIcon>
-            <NewIcon />
-            </ListItemIcon>
-            <ListItemText primary="New Feeds" />
-            </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <NewIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="New Feeds" />
+                </ListItem>
             </Link>
-            </List>
+        </List>
     );
 }
 
