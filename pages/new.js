@@ -1,23 +1,11 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import material, {
-    Container,
+import Container, {
     Grid,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Box,
-    Button,
     Paper,
-    Icon,
-    SvgIcon
 } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import Navigation from "../src/Navigation";
-import ProTip from "../src/ProTip";
-import Link from "../src/Link";
-import Copyright from "../src/Copyright";
 import useSWR from "swr"
 import dayjs  from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
@@ -30,7 +18,7 @@ export async function getStaticProps() {
 }
 
 function renderLinkCell(params) {
-    return <a href={params.getValue("url")} target="_blank">{params.value}</a>;
+    return <a href={params.getValue("url")} target="_blank" rel="noreferrer">{params.value}</a>;
 }
 
 function formatDay(date) {
@@ -41,7 +29,7 @@ function renderUpdateCell(params) {
     return <span>{formatDay(new Date(params.value * 1000).toLocaleString())}</span>
 }
 
-export default function About({ }) {
+export default function About() {
     const { data, error } = useSWR(
         "/.netlify/functions/podcastindex-newfeeds",
         (...args) => fetch(...args).then(res => res.json(),
@@ -91,4 +79,4 @@ export default function About({ }) {
         </Grid>
     </Container>
     );
-    }
+}
