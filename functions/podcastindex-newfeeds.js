@@ -22,7 +22,7 @@ exports.handler = async function(event, context) {
                 method: 'GET',
                 headers: authHeaders
             }
-        );
+        )
         json = await pdiReq.json()
     } catch (error) {
         console.log(error)
@@ -32,5 +32,5 @@ exports.handler = async function(event, context) {
         statusCode: 200,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(json.feeds)
-    };
+    }
 }
