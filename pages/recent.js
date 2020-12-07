@@ -3,6 +3,8 @@ import Typography from "@material-ui/core/Typography";
 import material, {
     Container,
     Grid,
+    Checkbox,
+    FormControl, FormLabel, FormGroup, FormControlLabel,
     List,
     ListItem,
     ListItemIcon,
@@ -81,6 +83,23 @@ export default function About({ }) {
                 <Paper elevation={3}>
                     <Typography variant="h4">Podcast Index Explorer</Typography>
                 </Paper>
+                <FormControl>
+                    <FormGroup row>
+                        <FormControlLabel
+                            control={<Checkbox name="All" />}
+                            label="All"
+                        />
+
+                        <FormControlLabel
+                            control={<Checkbox name="en" />}
+                            label="English"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox name="de" />}
+                            label="German"
+                        />
+                    </FormGroup>
+                </FormControl>
             </Grid>
             <Grid item xs={3}>
                 <Paper elevation={3}>
