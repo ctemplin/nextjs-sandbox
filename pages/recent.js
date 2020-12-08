@@ -48,10 +48,27 @@ function renderCategorieCell(params) {
 }
 
 export default function About({ }) {
+
+    const [state, setState] = React.useState({
+        all: true,
+        en: false,
+        de: false,
+        langQueryStr: "",
+    });
+
+    var langQueryStr = ""
+    if (!state.all) {
+        langQueryStr += state.en ? "en," : ""
+        langQueryStr += state.de ? "de," : ""
+    } else {
+        langQueryStr = ""
+    }
+    var langParamsEncode = encodeURI(langQueryStr)
+//    setState({...state, langQueryStr: langQueryStr})
     const { data, error } = useSWR(
-        "/.netlify/functions/podcastindex-recent",
+        `/.netlify/functions/podcastindex-recent?q=${langParamsEncode}`,
         (...args) => fetch(...args).then(res => res.json(),
-        {dedupingInterval: 15000, revalidateOnFocus: false}
+                                         {dedupingInterval: 15000, revalidateOnFocus: false}
         )
     )
     if (error) return <div>failed to load</div>
@@ -62,12 +79,12 @@ export default function About({ }) {
     const dataCols = [
     { field: "title",
       headerName: "Title",
-      width: 300,
+      //      width: 300,
       renderCell: renderLinkCell
     },
     { field: "newestItemPublishTime",
       headerName: "Last updated",
-      width: 200,
+      //      width: 200,
       renderCell: renderUpdateCell
     },
     { field: "categories",
@@ -76,6 +93,7 @@ export default function About({ }) {
     }
     ];
 
+    const {all, en, de} = state
     return ( 
     <Container maxWidth="lg">
         <Grid container spacing="3" direction="row-reverse">
@@ -86,16 +104,23 @@ export default function About({ }) {
                 <FormControl>
                     <FormGroup row>
                         <FormControlLabel
-                            control={<Checkbox name="All" />}
+                            control={<Checkbox
+                                         value="all"
+                                         checked={all}
+                                         onChange={handleLangs} />}
                             label="All"
                         />
 
                         <FormControlLabel
-                            control={<Checkbox name="en" />}
+                            control={<Checkbox value="en"
+                                               checked={en}
+                                               onChange={handleLangs}/>}
                             label="English"
                         />
                         <FormControlLabel
-                            control={<Checkbox name="de" />}
+                            control={<Checkbox value="de"
+                                               checked={de}
+                                               onChange={handleLangs}/>}
                             label="German"
                         />
                     </FormGroup>
@@ -119,4 +144,8 @@ export default function About({ }) {
         </Grid>
     </Container>
     );
+
+    function handleLangs(ev){
+        setState({...state,  [ev.target.value]: ev.target.checked})
+    }
 }
