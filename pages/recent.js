@@ -96,7 +96,7 @@ export default function About({ }) {
     const {all, en, de} = state
     return ( 
     <Container maxWidth="lg">
-        <Grid container spacing="3" direction="row-reverse">
+        <Grid container spacing={3} direction="row-reverse" alignItems="stretch">
             <Grid item xs={12}>
                 <Paper elevation={3}>
                     <Typography variant="h4">Podcast Index Explorer</Typography>
@@ -140,6 +140,11 @@ export default function About({ }) {
                     autoHeight="true"
                     checkboxSelection
                 />
+            </Grid>
+            <Grid item xs={3}>
+                <Paper elevation={3}>
+                    <p>this thing</p>
+                    </Paper>    
             </Grid>
         </Grid>
     </Container>
