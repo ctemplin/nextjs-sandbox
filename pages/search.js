@@ -117,7 +117,7 @@ function ResGrid(fff) {
 export default function About({ }) {
     return (
         <Container maxWidth="lg">
-            <Grid container spacing="3" direction="row-reverse">
+            <Grid container spacing={3} direction="row-reverse" alignContent="stretch">
                 <Grid item xs={12}>
                     <Paper elevation={3}>
                         <Typography variant="h4">Podcast Index Explorer</Typography>
