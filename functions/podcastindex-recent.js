@@ -17,7 +17,7 @@ exports.handler = async function(event, context) {
     var json
     try {
         const pdiReq  = await fetch(
-            "https://api.podcastindex.org/api/1.0/recent/feeds?max=20&lang=" + event["queryStringParameters"]['q'],
+            "https://api.podcastindex.org/api/1.0/recent/feeds?max=1000&lang=" + event["queryStringParameters"]['q'],
             {
                 method: 'GET',
                 headers: authHeaders
