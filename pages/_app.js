@@ -10,7 +10,7 @@ import { CacheProvider } from "@emotion/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createCache from "@emotion/cache";
 import theme from "../src/theme";
-
+import "tailwindcss/tailwind.css";
 export const cache = createCache();
 
 export default function MyApp(props) {
