@@ -13,6 +13,8 @@ import material, {
     Button,
     Paper,
     Icon,
+    Select,
+    MenuItem,
     SvgIcon
 } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
@@ -50,6 +52,7 @@ function renderCategorieCell(params) {
 export default function About({ }) {
 
     const [state, setState] = React.useState({
+        since: -86400,
         all: true,
         en: false,
         de: false,
@@ -63,10 +66,11 @@ export default function About({ }) {
     } else {
         langQueryStr = ""
     }
+    var sinceQueryStr = "since=" + state.since
     var langParamsEncode = encodeURI(langQueryStr)
 //    setState({...state, langQueryStr: langQueryStr})
     const { data, error } = useSWR(
-        `/.netlify/functions/podcastindex-recent?q=${langParamsEncode}`,
+        `/.netlify/functions/podcastindex-recent?q=${langParamsEncode}&${sinceQueryStr}`,
         (...args) => fetch(...args).then(res => res.json(),
                                          {dedupingInterval: 15000, revalidateOnFocus: false}
         )
@@ -93,7 +97,7 @@ export default function About({ }) {
     }
     ];
 
-    const {all, en, de} = state
+    const {since, all, en, de} = state
     return ( 
     <Container maxWidth="lg">
         <Grid container spacing={3} direction="row-reverse" alignItems="stretch">
@@ -102,6 +106,16 @@ export default function About({ }) {
                     <Typography variant="h4">Podcast Index Explorer</Typography>
                 </Paper>
                 <FormControl>
+                    <FormControlLabel
+                        label="Since"
+                        control={<Select value={since}
+                        onChange={handleSinceChange}
+                                 >
+                            <MenuItem value={-86400}>1 Day</MenuItem>
+                            <MenuItem value={-259200}>3 Days</MenuItem>
+                            <MenuItem value={-604800}>7 Days</MenuItem>
+                        </Select>}
+                    />
                     <FormGroup row>
                         <FormControlLabel
                             control={<Checkbox
@@ -144,7 +158,7 @@ export default function About({ }) {
             <Grid item xs={3}>
                 <Paper elevation={3}>
                     <p>this thing</p>
-                    </Paper>    
+                </Paper>    
             </Grid>
         </Grid>
     </Container>
@@ -152,5 +166,9 @@ export default function About({ }) {
 
     function handleLangs(ev){
         setState({...state,  [ev.target.value]: ev.target.checked})
+    }
+
+    function handleSinceChange(ev){
+        setState({...state, since: ev.target.value})
     }
 }
